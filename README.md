@@ -3,6 +3,8 @@
 
 Composed by _____
 
+**Note: Files have not yet been added to repository**
+
 ## Description
 *WIEN2k* is a collection of programs used to solve the Kohn-Sham equations as part of Density Functional Theory. Once a calculation has been completed, the *OPTIC* routine (consisting of programs `lapw2 -fermi`, `optic`, `joint`, and `kram`) will generate files containing optical properties data, such as the dielectric function (`*.epsilon`), or the optical conductivity (`*.absorp`).
 
