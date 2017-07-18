@@ -76,6 +76,4 @@ These scripts are designed for a very specific purpose, and so have not been des
 - `ETEST.sh` and `ETEST.py` assume that the output from the SCF cycle is being printed to a file called `STDOUT` in the directory of the calculation. `w2web` does this by default, but this is not typical behaviour when `run_lapw` is called from the command line. Use `analyse_scf` to parse the `*.scf` file for other quantities.
 
 ## Feedback
-I've uploaded the scripts onto GitHub so that they may be shared, repurposed and edited freely. That said, if you find an issue with the scripts that you'd like to discuss or have fixed, you are welcome to submit a pull request.
-
-If you have questions about the physics and maths within the scripts, I would encourage you to leave a comment.
+I've uploaded the scripts onto GitHub so that they may be shared, repurposed and edited freely. That said, if you find an issue with the scripts that you'd like to discuss or have fixed, you are welcome to submit a pull request or issue.
