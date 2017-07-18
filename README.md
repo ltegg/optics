@@ -4,48 +4,46 @@
 Composed by Levi Tegg
 
 ## Description
-*WIEN2k* is a collection of programs used to perform electronic structure calculations of solids, using density functional theory. Once a calculation has been completed, the *OPTIC* routine (consisting of programs `lapw2 -fermi`, `optic`, `joint`, and `kram`) will generate files containing optical properties data, such as the dielectric function (`*.epsilon`), or the optical conductivity (`*.absorp`).
+[*WIEN2k*](http://susi.theochem.tuwien.ac.at/) is a collection of programs used to perform electronic structure calculations of solids, using density functional theory. Once a calculation has been completed, the *OPTIC* routine (consisting of programs `lapw2 -fermi`, `optic`, `joint`, and `kram`) will generate files containing optical properties data, such as the dielectric function (`*.epsilon`), or the optical conductivity (`*.absorp`).
 
-This repository contains scripts that parse some of the files written by *WIEN2k* and *OPTIC*, and calculate other optical properties, such as the complex refractive index, and the normal-incidence reflectivity, from which an estimation of the apparent colour can be derived.
+This repository contains scripts which parse some of the files written by *WIEN2k* and *OPTIC*, then calculate optical constants such as complex refractive index, electron energy-loss spectra (EELS), and an approximation of the apparent colour.
 
 ## Requirements
 This repository contains both Python (.py) and bash (.sh) scripts. In general, each script can be installed and used independently of the other scripts within this repository.
 
 ### Python
-All of the scripts were written using Python 3.4(check). The libraries used are
-
-- glob - *to perform bash-style directory searching*
-- numpy - *the bulk of the data/array handling*
-- matplotlib.pyplot - *to generate plots of the optical properties*
-
-These scripts were written using Spyder 3.1.x, under Anaconda3.
+All of the scripts were written using Python 3.5. The libraries used are [numpy](http://www.numpy.org/), pyplot, part of [matplotlib](https://matplotlib.org/index.html), [glob](https://docs.python.org/3.5/library/glob.html), and [sys](https://docs.python.org/3.5/library/sys.html). These scripts were written using Spyder 3.1.x, using the Anaconda3 distribution.
     
 ### Bash
-The bash scripts are largely handlers for the Python scripts, where tools within Python were unwieldly, or I simply knew how to achieve my goal using bash. They should work with any bash terminal.
+The bash scripts are largely handlers for the Python scripts. They should work with any bash-like terminal.
 
 ## Usage
-Most of the python scripts include code to search the present working directory (pwd) for the files it needs. For example, in the case of `optic.py`:
+Most of the python scripts include code to search the present working directory (pwd) for the files it needs. Alternatively, arguments can be passed to the script to tell it exactly what to process.
 
-1. Run `optic.py` in a folder containing a single `*.epsilon` file.
-2. `optic.py` will automatically parse the `*.epsilon` file to determine the number of columns/directions present i.e., 1D (cubic), 2D (hexagonal or tetragonal) or 3D (orthorhombic, monoclinic, triclinic). *Note: At this stage, the scripts do not support more than 3 columns from the dielectric densor.*
-3. The script will then calculate other optical properties. In the case of `optic.py`, the following will be calculated:
-  - Complex refractive index (n,kappa)
-  - Normal-incidence vacuum reflectivity (R)
-  - Electron energy-loss spectrum (EELS)
-  - Apparent colour using CIESTANDARD
-4. The dataset will be printed to a `*.csv` file, and some figures will be printed to `*.png` files by default, though this can be modified. These files will be saved to the same directory as the `*.epsilon` file.
+### `optic.py`
+Calling
 
-Further information can be found in the comments of each script.
+`$ python3 optic.py`
 
-## Known Issues
+in a directory with one or more `*.epsilon` files will process all of the `*.epsilon` files in the pwd.
+
+Alternatively, calling
+
+`$ python3 optic.py case1.epsilon case2.epsilon case3.epsilon ...`
+
+will make `optic.py` process only those epsilon files passed as arguments.
+
+If 3 columns are found in a `*.epsilon` file, the script will assume a one-dimensional case. If 5 columns are found, the script will assume the x- and y-directions are equal, and the z-direction is different. If 7 columns are found, the script will assume the x-, y- and z-directions are different. Currently, there is no support for more than 3-directions.
+
+The script will save images and data files with the same case name as the `*.epsilon` file, in the same directory as the `*.epsilon` file.
+
+Further information can be found in the script comments.
+
+## Issues
 These scripts are designed for a very specific purpose, and so have not been designed with robustness or security in mind. As such, there are probably very many usage scenarios where these scripts produce incorrect results or fail completely. The author accepts no responsibility for results obtained using these scripts, and encourages users to read the scripts in their entirety before use. That said, there are some issues and bugs that I am aware of (and you should be too):
 
-- The scripts `optics.py`, `conductivity.py` only accept up to 3-dimensions worth of data. Regardless of what columns were actually specified in `*.inop`, the `optics.py` script assumes:
-  - 3 columns present in file = 1 column of energy + 1 column of epsilon_1 + 1 column of epsilon2 (x = y = z)
-  - 5 columns present in file = 1 column of energy + 2 columns of epsilon_1 + 2 columns of epsilon2 (x = y =/= z)
-  - 7 columns present in file = 1 column of energy + 3 columns of epsilon_1 + 3 columns of epsilon2 (x =/= y =/= z)
 - Accurately interpolating wavelength and reflectivity for the calculation of the apparent colour relies on a fine energy spacing (in eV) across the visible energy range. The default values in `*.inop` are generally sufficient, but check your discretisation to ensure there are no sudden changes in the refractive index.
-- When 2 or more dimensions are present some of the graphs generated by `optics.py` include optical constants for each direction (x,z or x,y,z), as well as a weighted sum (x+y+z). This is calculated via xyz = (x + y + z) / 3. Be aware that in the case of EELS data, the true loss spectrum for a polycrystalline sample of an anisotropic material cannot be calculated in this way. The xyz curve approximation is valid for when the dielectric function the x, y and z directions are *similar*.
+- When 2 or more dimensions are present some of the graphs generated by `optics.py` include optical constants for each direction (x, x,z or x,y,z), as well as a weighted sum (x+y+z). This is calculated via xyz = (x + y + z) / 3. Be aware that in the case of EELS data, the true loss spectrum for a polycrystalline sample of an anisotropic material cannot be calculated in this way.
 
 ## Feedback
 I've uploaded the scripts onto GitHub so that they may be shared, repurposed and edited freely. That said, if you find an issue with the scripts that you'd like to discuss or have fixed, you are welcome to submit a pull request.
