@@ -1,0 +1,5 @@
+# Ignore the sh-to-git/optics shell scripts
+sh2git.sh
+
+# Ignore the git/optics-to-sh shell scripts
+git2sh.sh

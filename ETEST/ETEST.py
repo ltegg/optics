@@ -18,7 +18,7 @@
 
 # %% Import Libraries
 import numpy as np # to do data manipulation
-import matplotlib.plyplot as pl # to plot things
+import matplotlib.pyplot as pl # to plot things
 import datetime # to get date and time later
 from scipy.optimize import curve_fit # to fit ETEST
 # Set the default math font to be the default font, and use Arial-like fonts
