@@ -1,0 +1,50 @@
+ LAPW0 END
+ LAPW1 END
+ LAPW2 END
+ CORE  END
+ MIXER END
+ec cc and fc_conv 0 1 1
+in cycle 2    ETEST: 0   CTEST: 0
+ LAPW0 END
+ LAPW1 END
+ LAPW2 END
+ CORE  END
+ MIXER END
+ec cc and fc_conv 0 1 1
+in cycle 3    ETEST: 0   CTEST: 0
+ LAPW0 END
+ LAPW1 END
+ LAPW2 END
+ CORE  END
+ MIXER END
+ec cc and fc_conv 0 1 1
+in cycle 4    ETEST: .0087874450000000   CTEST: .2655257
+ LAPW0 END
+ LAPW1 END
+ LAPW2 END
+ CORE  END
+ MIXER END
+ec cc and fc_conv 0 1 1
+in cycle 5    ETEST: .0100609750000000   CTEST: .1805313
+ LAPW0 END
+ LAPW1 END
+ LAPW2 END
+ CORE  END
+ MIXER END
+ec cc and fc_conv 0 1 1
+in cycle 6    ETEST: .0045169150000000   CTEST: .0375557
+ LAPW0 END
+ LAPW1 END
+ LAPW2 END
+ CORE  END
+ MIXER END
+ec cc and fc_conv 0 1 1
+in cycle 7    ETEST: .0006322300000000   CTEST: .0253603
+ LAPW0 END
+ LAPW1 END
+ LAPW2 END
+ CORE  END
+ MIXER END
+ec cc and fc_conv 1 1 1
+
+>   stop
