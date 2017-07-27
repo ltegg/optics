@@ -12,7 +12,7 @@ This repository contains scripts which parse some of the files written by *WIEN2
 This repository contains both Python (`.py`) and bash (`.sh`) scripts. In general, each script can be installed and used independently of the other scripts within this repository.
 
 ### Python
-All of the scripts were written using Python 3.5. The libraries used are [numpy](http://www.numpy.org/), pyplot, part of [matplotlib](https://matplotlib.org/index.html), [glob](https://docs.python.org/3.5/library/glob.html), and [sys](https://docs.python.org/3.5/library/sys.html). These scripts were written using Spyder 3.1.x, using the Anaconda3 distribution.
+All of the scripts were written using Python 3.5. Though each script differs slightly, the main libraries used are [numpy](http://www.numpy.org/), pyplot from [matplotlib](https://matplotlib.org/index.html), [glob](https://docs.python.org/3.5/library/glob.html), and [sys](https://docs.python.org/3.5/library/sys.html). These scripts were written using Spyder 3.1.x, using the Anaconda3 distribution.
     
 ### Bash
 The bash scripts are largely handlers for the Python scripts. They should work with any bash-like terminal.
